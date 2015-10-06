@@ -1,13 +1,17 @@
 #pragma once
 
 #include "ofMain.h"
+#include <GLFW/glfw3.h>
 
 class ofApp : public ofBaseApp{
+
+	GLFWwindow *mainWindow, *auxWindow;
 
 	public:
 		void setup();
 		void update();
 		void draw();
+		void loadImage(ofImage i);
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -18,5 +22,7 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+
+		ofImage image;
 		
 };
