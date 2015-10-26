@@ -3,7 +3,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
 
-
+	ofSetWindowTitle("Lab");
+	drawImage = false;
+	secondWindow = false;
+	gui.setup();
+	startB.addListener(this,&ofApp::start);
+	gui.add(startB.setup("start"));
 
 
 }
@@ -15,7 +20,19 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	image.draw(0,0);
+	if(drawImage)
+	{
+		image.draw(0,0);
+	}
+
+	if(secondWindow)
+	{
+		gui.setPosition(image.width,0);
+		gui.draw();
+	}
+
+
+
 }
 
 //--------------------------------------------------------------
@@ -74,16 +91,55 @@ void ofApp::dragEvent(ofDragInfo di){
 			cout << "Image" << endl;
 			image.loadImage(path);
 			loadImage(image);
-			
+			drawImage = true;
+			secondWindow = true;
 		}
 
 		else
 		{
-			cout << "Le fichier n'est pas une image! " << endl;
+			cout << "Le fichier n'est pas un format image supporté " << endl;
 
 		}
 
 	}
+}
+
+
+void ofApp::start()
+{
+	unsigned char *data = image.getPixels();
+	// premier affichage 
+	// calcul du nombre de px 
+	int components = image.bpp / 8;
+	
+	for (int y=0; y<image.height; y++) 
+	{
+		for (int x=0; x<image.width; x++) 
+		{
+
+			//Read pixel (x,y) color components
+			int index = components * (x + image.width * y);
+			int red = data[ index ];
+			int green = data[ index + 1 ];
+			int blue = data[ index + 2 ];
+
+			//red = (red >50)? red=0 : red = 255;
+			red = 0;
+			//green = (green >50)? green=0 : green = 255;
+			green =0;
+			blue = (blue < 122)? blue=0 : blue = 255;
+
+			
+			//Set red 
+			data[ index ] = red ;
+			//Set green 
+			data[ index + 1 ] = green;
+			//Set blue 
+			data[ index + 2 ] = blue;
+
+		}
+	}
+	image.update();
 }
 
 		

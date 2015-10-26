@@ -1,17 +1,20 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 #include <GLFW/glfw3.h>
 
 class ofApp : public ofBaseApp{
 
-	GLFWwindow *mainWindow, *auxWindow;
 
 	public:
 		void setup();
 		void update();
 		void draw();
 		void loadImage(ofImage i);
+		void start();
+
+
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -24,5 +27,11 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		ofImage image;
+		ofxButton startB;
+		ofxPanel gui;
+		bool drawImage;
+		bool secondWindow;
+
+
 		
 };
