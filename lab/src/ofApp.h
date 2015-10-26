@@ -14,6 +14,7 @@ class ofApp : public ofBaseApp{
 		void loadImage(ofImage i);
 		void start();
 
+		void gray();
 
 
 		void keyPressed(int key);
