@@ -139,6 +139,7 @@ void ofApp::gray()
 void ofApp::start()
 {
 	unsigned char *data = image.getPixels();
+	
 	// premier affichage 
 	// calcul du nombre de px 
 	int components = image.bpp / 8;
@@ -160,7 +161,17 @@ void ofApp::start()
 			green =0;
 			blue = (blue < 122)? blue=0 : blue = 255;*/
 
-			red = (red > 127)? red=0 : red = 255,green = 255, blue =255;
+			//green = (green > 127)? green = green, red = red, blue = blue : green = 0, red = 0, blue = 0;
+			
+			if(red <45 && green <45 && blue <45)
+			{
+				red = 0;
+			}
+			else 
+			{
+				red = 255;
+			}
+			
 
 			//Set red 
 			data[ index ] = red ;
