@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+//#include "../../addons/ofxOpenCv/src/ofxOpenCv.h"
 
 class ofApp : public ofBaseApp{
 
@@ -24,4 +25,6 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 		ofImage img1;
 		ofImage img2;
+
+
 };

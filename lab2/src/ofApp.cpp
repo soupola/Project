@@ -7,7 +7,11 @@ void ofApp::setup(){
 	img1 = resize(img1);
 	img1 = binerisation(img1);
 	img2 = img1;
-	img2 = dilatation(img2);
+	
+	for(int i = 0; i<10 ; i++)
+	{
+		img2 = dilatation(img2);
+	}
 }
 
 //--------------------------------------------------------------
@@ -17,8 +21,8 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	img1.draw(0,0);
 	img2.draw(img1.width,0);
+
 }
 
 ofImage ofApp::resize(ofImage i)
@@ -44,7 +48,7 @@ ofImage ofApp::binerisation(ofImage i)
 	{
 		for (int x=0; x<i.width; x++) 
 		{
-			if(i.getColor(x,y).getBrightness()>127)
+			if(i.getColor(x,y).getBrightness()>50)
 			{
 				i.setColor(x,y,255);
 			}
@@ -59,7 +63,7 @@ ofImage ofApp::binerisation(ofImage i)
 }
 
 ofImage ofApp::dilatation(ofImage i){
-	ofImage imagereturn;
+	ofImage imagereturn = i;
 	for (int y=0; y<i.height; y++) 
 	{
 		for (int x=0; x<i.width; x++) 
